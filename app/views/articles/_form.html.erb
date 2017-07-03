@@ -11,12 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="emoji-picker-container">
     <%= form.label :title %>
-    <%= form.text_field :title, id: :article_title %>
+    <%= form.text_field :title, class: 'form-control', data: { emojiable: true } %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+

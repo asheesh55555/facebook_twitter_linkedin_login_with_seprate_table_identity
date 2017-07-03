@@ -6,7 +6,9 @@
     <td>
       <p>
         <strong>Title:</strong>
-        <%= @article.title %>
+        <%= content_with_emoji(@article.title) %>
+
+       
       </p>
     </td>
     <% if Vote.find_by(votable_id: @article.id).present? %>
