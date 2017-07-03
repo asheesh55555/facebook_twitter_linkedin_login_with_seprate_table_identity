@@ -1,9 +1,27 @@
+
+
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
-
+<table>
+  <tr>
+    <td>
+      <p>
+        <strong>Title:</strong>
+        <%= @article.title %>
+      </p>
+    </td>
+    <% if Vote.find_by(votable_id: @article.id).present? %>
+	    <% if @article.votes_for.where(voter_id: current_user.id).first.vote_flag == true %>
+	    <td><%= link_to "Dislike", dislike_article_path(@article), method: :put %></td>
+	    <%else%>
+	    <td><%= link_to "Like", like_article_path(@article), method: :put %></td>
+	    <% end %>
+      <%else%>
+      <td><%= link_to "Like", like_article_path(@article), method: :put %></td>
+    <td><%= link_to "Dislike", dislike_article_path(@article), method: :put %></td>
+    <% end %>
+    
+  </tr>
+</table>
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>
+
