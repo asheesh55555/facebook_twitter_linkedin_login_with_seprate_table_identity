@@ -61,3 +61,5 @@ gem 'omniauth-google-oauth2'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'rails_emoji_picker'
 gem 'jquery-rails'
+  
+gem 'bootstrap-sass', '~> 3.3.6'
