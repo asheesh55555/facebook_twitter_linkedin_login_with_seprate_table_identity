@@ -1,0 +1,2 @@
+module EndorcesHelper
+end
