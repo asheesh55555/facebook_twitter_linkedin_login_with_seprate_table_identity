@@ -3,6 +3,7 @@ Rails.application.routes.draw do
  match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
  
 resources :articles do
+  
   resources :endorses
 end
  
@@ -23,6 +24,9 @@ resources :article do
   end
 end
 
+
+
+get "/tagging" => "articles#tag"
 end
 
 

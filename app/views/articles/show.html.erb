@@ -11,6 +11,17 @@
        
       </p>
     </td>
+<%  @users.each do |user| %>
+    <td>
+      <p>
+        <strong>Tag To User:</strong>
+            <td><%= link_to user.email, tagging_path()+ "?userID=#{user.id}&&articleID=#{@article.id}" ,:user => user.id %></td>
+
+
+      </p>
+    </td>
+    <% end %>
+
     <% if Vote.find_by(votable_id: @article.id).present? %>
 
 	    <% if @article.votes_for.where(voter_id: current_user.id).first.vote_flag == true %>

@@ -3,6 +3,16 @@ class ArticlesController < ApplicationController
 
   # GET /articles
   # GET /articles.json
+  def tag
+Tagging.create(user_id: params[:userID ],article_id: params[:articleID ])
+
+
+ redirect_to '/articles/#{:articleID}'
+            
+
+ 
+    
+  end
   def index
     @articles = Article.all
   end
@@ -10,6 +20,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
+
+    @users=User.all
   end
 
   # GET /articles/new

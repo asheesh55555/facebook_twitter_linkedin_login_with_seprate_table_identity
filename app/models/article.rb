@@ -1,5 +1,6 @@
 class Article < ApplicationRecord
-	 belongs_to :user
+	  has_many :taggings
+    has_many :users, through: :taggings
 	 has_many :endorses
 	  acts_as_votable
 end
