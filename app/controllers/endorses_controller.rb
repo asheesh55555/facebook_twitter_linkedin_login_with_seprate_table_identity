@@ -1,7 +1,10 @@
 class EndorsesController < ApplicationController
 	def create
+    #byebug
     @article = Article.find(params[:article_id])
-    @comment = @article.endorses.create(endorse_params)
+    @endorse = @article.endorses.new(endorse_params)
+    @endorse.user_id = current_user.id
+    @endorse.save
     redirect_to article_path(@article)
   end
  

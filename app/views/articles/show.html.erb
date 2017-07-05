@@ -12,6 +12,7 @@
       </p>
     </td>
     <% if Vote.find_by(votable_id: @article.id).present? %>
+
 	    <% if @article.votes_for.where(voter_id: current_user.id).first.vote_flag == true %>
 	    <td><%= link_to "Dislike", dislike_article_path(@article), method: :put %></td>
 	    <%else%>
@@ -34,6 +35,11 @@
   <p>
     <strong>body:</strong>
     <%= endorse.body %>
+  </p>
+
+  <p>
+    <strong>Endorsed by:</strong>
+    <%= endorse.user.email %>
   </p>
 <% end %>
  

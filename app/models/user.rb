@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     has_many :articles
+    has_many :endorses
 has_many :messages
 has_many :conversations, foreign_key: :sender_id
   
