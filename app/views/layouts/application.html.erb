@@ -13,6 +13,10 @@
   <li>
   <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
   </li>
+       <% unless params[:controller] == "users" && params[:action] == "show" %>
+
+  <%= link_to "profile", {:controller => "users", :action => "show", :id => current_user.id }%>
+  <%end%>
 <% else %>
   <li>
   <%= link_to('Login', new_user_session_path)  %>  
@@ -20,8 +24,9 @@
 <% end %>
     <div class="container">
     <%#= link_to('profile', user_profile_path, method: :get) %> 
-    <%= link_to "profile", {:controller => "users", :action => "show", :id => current_user.id }%>
+    
       <%= yield %>
     </div>
   </body>
 </html>
+
