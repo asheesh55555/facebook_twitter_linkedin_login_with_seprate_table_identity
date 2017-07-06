@@ -19,6 +19,8 @@
   </li>
 <% end %>
     <div class="container">
+    <%#= link_to('profile', user_profile_path, method: :get) %> 
+    <%= link_to "profile", {:controller => "users", :action => "show", :id => current_user.id }%>
       <%= yield %>
     </div>
   </body>

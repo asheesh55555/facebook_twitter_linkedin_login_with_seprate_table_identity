@@ -27,6 +27,7 @@ end
 
 
 get "/tagging" => "articles#tag"
+get "/user/profile" => "users#show"
 end
 
 

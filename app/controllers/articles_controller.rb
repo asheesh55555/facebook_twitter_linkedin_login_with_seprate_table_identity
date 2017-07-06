@@ -4,10 +4,10 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def tag
-Tagging.create(user_id: params[:userID ],article_id: params[:articleID ])
+Tagging.create(:user_id => params[:userID ],article_id: params[:articleID ])
 
 
- redirect_to '/articles/#{:articleID}'
+ redirect_to 'articles/#{:articleID}'
             
 
  

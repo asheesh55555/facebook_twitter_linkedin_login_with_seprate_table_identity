@@ -15,7 +15,7 @@
     <td>
       <p>
         <strong>Tag To User:</strong>
-            <td><%= link_to user.email, tagging_path()+ "?userID=#{user.id}&&articleID=#{@article.id}" ,:user => user.id %></td>
+            <td><%= link_to user.email, tagging_path+ "?userID=#{user.id}&&articleID=#{@article.id}"  %></td>
 
 
       </p>
