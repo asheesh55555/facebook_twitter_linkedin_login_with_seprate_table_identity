@@ -24,10 +24,17 @@ resources :article do
   end
 end
 
+resources :users do
+    resources :follows
+end
+
 
 
 get "/tagging" => "articles#tag"
 get "/user/profile" => "users#show"
+get "/user/follow1111" => "users#follow"
+get "/user/following" => "follows#following"
+get "/user/follower" => "follows#follower"
 end
 
 

@@ -1,5 +1,9 @@
 <h1>Your profile</h1>
 
+
+   
+    
+
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
@@ -9,3 +13,36 @@
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
+
+<table>
+
+<%  @users.each do |user| %>
+<tr>
+    <td>
+      <p>
+    
+           
+ <%= link_to "follow", user_follows_path(user.id),  method: :post %>
+ <%=user.name %>
+      </p>
+    </td>
+    </tr>
+    <% end %>
+
+    <tr>
+    <td>
+     
+    </td>
+    </tr>
+
+
+
+</table>
+ <h1>
+    
+ <%= link_to "Following", {controller: "follows", action: "following"} %>
+      </h1>
+      <h1>
+    
+ <%= link_to "Follower", {controller: "follows", action: "follower"} %>
+      </h1>

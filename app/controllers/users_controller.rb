@@ -1,11 +1,21 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :finish_signup]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :finish_signup, :follow]
 
   
 
   # GET /users/:id.:format
   def show
+    @followers=current_user.followers 
+    @users=User.all
     # authorize! :read, @user
+  end
+  def follow
+  
+  
+    Follow.create(follower_id: params[:followerid], following_id: params[:followingid] )
+
+    redirect_to user_profile_path
+    
   end
 
   # GET /users/:id/edit
