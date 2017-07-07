@@ -1,9 +1,6 @@
 <h1>Your profile</h1>
 
 
-   
-    
-
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
@@ -20,10 +17,21 @@
 <tr>
     <td>
       <p>
-    
-           
- <%= link_to "follow", user_follows_path(user.id),  method: :post %>
+       <% @follow=Follow.where(follower_id: current_user.id, following_id: user.id ) %>
+       <%  if @follow.present? %>
+       
+      
+
+ <%= link_to "unfollow", user_follows_path(user.id),  method: :post %>
+
  <%=user.name %>
+ <%  else %>
+
+ <%= link_to "follow", user_follows_path(user.id),  method: :post %>
+
+ <%=user.name %>
+
+ <%  end %>
       </p>
     </td>
     </tr>

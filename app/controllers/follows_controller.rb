@@ -1,14 +1,16 @@
 class FollowsController < ApplicationController
 	def create
+	  @follow=Follow.where(follower_id: current_user.id, following_id: params[:user_id] )
 
+		if @follow.present?
+			 @follow.first.destroy
+			 
+		else
 
+		    Follow.create(follower_id: current_user.id, following_id: params[:user_id] )
 
-
-    Follow.create(follower_id: current_user.id, following_id: params[:user_id] )
-
-    
-    redirect_to user_path(current_user)
-
+		end
+redirect_to user_path(current_user)
 	end
 
 	def following
