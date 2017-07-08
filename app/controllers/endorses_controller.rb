@@ -1,6 +1,6 @@
 class EndorsesController < ApplicationController
 	def create
-    #byebug
+  
     @article = Article.find(params[:article_id])
     @endorse = @article.endorses.new(endorse_params)
     @endorse.user_id = current_user.id
