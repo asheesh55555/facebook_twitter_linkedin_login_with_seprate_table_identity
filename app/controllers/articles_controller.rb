@@ -42,6 +42,8 @@ Tagging.create(:user_id => params[:userID ],article_id: params[:articleID ])
 
     respond_to do |format|
       if @article.save
+                UserMailer.welcome_email(current_user).deliver_now
+
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
       else
