@@ -32,3 +32,99 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>Sign Up</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   </head>
+   <body style="padding-top:130px;">
+      <div class="container">
+         <center>
+            <div class="container">
+               <h3>SIGN UP FOR </h3>
+               <h2>COLAB</h2>
+               <div class="btn-group-vertical">
+                  <button style="padding:5px 60px;" type="button" class="btn btn-info face">Facebook</button>
+                  <br/>
+                  <button type="button" class="btn btn-danger goog">Google</button>
+               </div>
+               <h3>OR</h3>
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+                  <div class="form-group">
+                   <%= f.text_field :name, class: "eml", placeholder: "Full Name", id: "fullname"%>
+                     
+                     <br/><br/>
+                     <%= f.email_field :email, class: "eml", placeholder: "Email", id: "email" %>
+                 
+                     <br/><br/>
+
+
+                      <% if @minimum_password_length %>
+                        <em>(<%= @minimum_password_length %> characters minimum)</em>
+                        <% end %><br />
+                        <%= f.password_field :password, class: "eml", placeholder: "Password" , id: "pass" %>
+                                        
+                      <br/><br/>
+                      <%= f.password_field :password_confirmation, class: "eml", placeholder: "Confirm Password" , id: "pass" %>
+                       <br/>
+                     <small>Already Have Account?<a href="">Log in</a></small>
+                  </div>
+                  <br/>
+                
+               <%= f.submit "Sign up", class: "btn btn-danger",  style: "padding:5px 70px;"  %>
+               <% end %>
+            </div>
+      </div>
+      </center>
+   </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

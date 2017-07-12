@@ -17,11 +17,13 @@
 
 
 
+
 //= require jquery
 //= require jquery_ujs
 //= require rails_emoji_picker
 //= require rails-ujs
 //= require turbolinks
+//= require select2-full
 //= require_tree .
 (function() {
   $(document).on('click', '.toggle-window', function(e) {

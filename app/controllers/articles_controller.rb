@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def tag
+  
 Tagging.create(:user_id => params[:userID ],article_id: params[:articleID ])
 
 
@@ -15,17 +16,27 @@ Tagging.create(:user_id => params[:userID ],article_id: params[:articleID ])
   end
   def index
     @articles = Article.all
+
+
+
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
+     session[:conversations] ||= []
+ 
+    @users = User.all.where.not(id: current_user)
+    
+    @conversations = Conversation.includes(:recipient, :messages)
+                                 .find(session[:conversations])
 
     @users=User.all
   end
 
   # GET /articles/new
   def new
+    @users=User.all
     @article = Article.new
   end
 
@@ -36,12 +47,21 @@ Tagging.create(:user_id => params[:userID ],article_id: params[:articleID ])
   # POST /articles
   # POST /articles.json
   def create
+    
     @article = Article.new(article_params)
     @article.user_id=current_user.id
     
 
     respond_to do |format|
       if @article.save
+       # byebug
+        @art_id= @article.id
+        
+        params[:vvv ].each do |userid|
+         Tagging.create(:user_id => userid,article_id: @art_id) 
+  
+        end
+        #Tagging.create(:user_id => params[:abc ],article_id: @art_id)
                 #UserMailer.welcome_email(current_user).deliver_now
 
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
@@ -80,14 +100,15 @@ Tagging.create(:user_id => params[:userID ],article_id: params[:articleID ])
 
 
     def upvote
+    
       @article = Article.find(params[:id])
       @article.liked_by current_user
-      redirect_to @article
+      redirect_to articles_path
   end
  def downvote
       @article = Article.find(params[:id])
       @article.downvote_from current_user
-      redirect_to @article
+      redirect_to articles_path
   end
 
 
