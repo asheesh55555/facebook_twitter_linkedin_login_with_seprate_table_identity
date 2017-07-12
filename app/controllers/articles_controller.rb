@@ -36,7 +36,7 @@ Tagging.create(:user_id => params[:userID ],article_id: params[:articleID ])
 
   # GET /articles/new
   def new
-    @users=User.all
+  @users = User.all.where.not(id: current_user)
     @article = Article.new
   end
 
@@ -56,11 +56,15 @@ Tagging.create(:user_id => params[:userID ],article_id: params[:articleID ])
       if @article.save
        # byebug
         @art_id= @article.id
-        
-        params[:vvv ].each do |userid|
+       @user_idss = params[:vvv ]
+       if @user_idss != nil
+         
+     
+        @user_idss.each do |userid|
          Tagging.create(:user_id => userid,article_id: @art_id) 
   
         end
+          end
         #Tagging.create(:user_id => params[:abc ],article_id: @art_id)
                 #UserMailer.welcome_email(current_user).deliver_now
 
@@ -125,6 +129,6 @@ Tagging.create(:user_id => params[:userID ],article_id: params[:articleID ])
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title)
+      params.require(:article).permit(:title, :img)
     end
 end

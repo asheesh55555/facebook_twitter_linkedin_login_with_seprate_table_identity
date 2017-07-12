@@ -72,3 +72,4 @@ gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 
 gem "select2-rails"
+gem 'carrierwave', '~> 1.0'
