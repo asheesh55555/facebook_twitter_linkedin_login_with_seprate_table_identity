@@ -62,34 +62,94 @@
           <%= link_to 'Edit', edit_article_path(article) %>&nbsp;&nbsp;&nbsp;&nbsp;
           <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %>&nbsp;&nbsp;&nbsp;&nbsp;
 
+            
+              <%@likes=Vote.where(votable_id: article.id ,vote_flag: true).count%>
 
-          <% if Vote.find_by(votable_id: article.id).present? %>
-            <% if Vote.where(votable_type: "Article", voter_id: current_user.id, vote_flag: "t").first.present? %>
-            <%= link_to "Dislike", dislike_article_path(article), method: :put %>
-            <%else%>
-            <%= link_to "Like", like_article_path(article), method: :put %> 
-            <% end %>
+               <%@dislikes=article.get_downvotes.size%>
+          <%# if Vote.find_by(votable_id: article.id).present? %>
+            <%# if Vote.where(votable_type: "Article", voter_id: current_user.id, vote_flag: "t").first.present? %>
+            <%= link_to "Dislike #{@dislikes}", dislike_article_path(article), method: :put %>
+            <%#else%>
+            <%= link_to "Like #{@likes}", like_article_path(article), method: :put %> 
+            <%# end %>
           <%#byebug%>
           <%#= link_to "Like", like_article_path(article), method: :put %> 
           <%#= link_to "Dislike", dislike_article_path(article), method: :put %>
-          <%else%>
-          <%= link_to "Like", like_article_path(article), method: :put %>
-          <%= link_to "Dislike", dislike_article_path(article), method: :put %>
-          <% end %>
+          <%#else%>
+          <%#= link_to "Like", like_article_path(article), method: :put %>
+          <%#= link_to "Dislike", dislike_article_path(article), method: :put %>
+          <%# end %>
           &nbsp;&nbsp;&nbsp;&nbsp;
            
           <button  onclick="endorses_click('<%=article.id%>');">Endorse</button>
            &nbsp;&nbsp;&nbsp;&nbsp;
 
-          <a href="">
-          unlike (0)
-          </a>&nbsp;&nbsp;&nbsp;&nbsp;
+          <!-- <button  onclick="chat_click('<%=article.id%>');">Connect</button>&nbsp;&nbsp;&nbsp;&nbsp; -->
 
 
           <a href="">
           unlike (0)
           </a>&nbsp;&nbsp;&nbsp;&nbsp;
         </div>
+
+
+
+
+
+
+
+<div class="chat_form_<%=article.id %>" style='display: none;'>
+    
+<div class="row">
+  <div class="col-md-9">
+    <ul id="conversations-list">
+      <% @conversations.each do |conversation| %>
+        <%= render 'conversations/conversation', conversation: conversation, user: current_user %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="col-md-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">User list</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <% @users.each do |user| %>
+         <li><%= link_to user.email, conversations_path(user_id: user), remote: true, method: :post %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+
+
+
+
+
+
+
+
+
+
+
 
            <h2>endorses</h2>
                 <% article.endorses.each do |endorse| %> 
@@ -141,3 +201,10 @@ function endorses_click(argument) {
 
 </script>
     
+    <script>
+
+function chat_click(argument) {
+   $(".chat_form_"+ argument).toggle();
+}
+
+</script>
