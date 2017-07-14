@@ -1,0 +1,5 @@
+$(function() { 
+	
+  $('.article-up-<%=@article.id%>').text( "Like"+"<%= @article.get_upvotes.size %>" );
+  $('.article-down-<%=@article.id%>').text("Dislike"+"<%= @article.get_downvotes.size %>" );
+});

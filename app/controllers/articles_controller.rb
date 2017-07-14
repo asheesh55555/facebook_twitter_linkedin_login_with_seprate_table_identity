@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-
+   include ApplicationHelper
   # GET /articles
   # GET /articles.json
   def tag
@@ -41,7 +41,14 @@ Tagging.create(:user_id => params[:userID ],article_id: params[:articleID ])
 
   # GET /articles/new
   def new
-  @users = User.all.where.not(id: current_user)
+  @articles = Article.all
+ session[:conversations] ||= []
+ 
+    @users = User.all.where.not(id: current_user)
+    
+    @conversations = Conversation.includes(:recipient, :messages)
+                                 .find(session[:conversations])
+
     @article = Article.new
   end
 
@@ -73,7 +80,7 @@ Tagging.create(:user_id => params[:userID ],article_id: params[:articleID ])
         #Tagging.create(:user_id => params[:abc ],article_id: @art_id)
                 #UserMailer.welcome_email(current_user).deliver_now
 
-        format.html { redirect_to @article, notice: 'Article was successfully created.' }
+        format.html { redirect_to new_article_path, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new }
@@ -112,12 +119,16 @@ Tagging.create(:user_id => params[:userID ],article_id: params[:articleID ])
     
       @article = Article.find(params[:id])
       @article.liked_by current_user
-      redirect_to articles_path
+       respond_to do |format|
+    format.js { render :file => 'articles/article.js.erb'}
+     end
   end
  def downvote
       @article = Article.find(params[:id])
       @article.downvote_from current_user
-      redirect_to articles_path
+       respond_to do |format|
+    format.js { render :file => 'articles/article.js.erb'}
+     end
   end
 
 

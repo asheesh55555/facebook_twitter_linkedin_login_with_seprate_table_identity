@@ -1,28 +1,35 @@
-<h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-<%= render "devise/registrations/form" %>
 
-<%= render "devise/shared/links" %>
-
+ <center>
+    
+     
+        <div class="container">
+          <h2>COLAB</h2>
+          <div class="btn-group-vertical">
+             <%= link_to "Facebook", "/users/auth/facebook", class: "btn btn-info face",style: "padding:5px 60px;" ,type: "button"%>
+            <br/>
+            <%= link_to "Google", "/users/auth/google_oauth2", class: "btn btn-danger goog",type: "button"%>
+          </div>
+          <h3>OR</h3>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  
+            <div class="form-group">
+                <%= f.email_field :email, class: "eml", placeholder: "Email", id: "email" %>
+              <br/><br/>
+              <% if @minimum_password_length %>
+                        <em>(<%= @minimum_password_length %> characters minimum)</em>
+                        <% end %><br />
+                        <%= f.password_field :password, class: "eml", placeholder: "Password" , id: "pass" %>
+              <br/>
+              <small>Need to Coleb?<a href="/users/sign_up">Sign Up</a></small>
+            </div>
+            <br/>
+            <button type="submit" style="padding:5px 70px;" >Login</button>
+         <% end %>
+        </div>
+ 
+    </center>
+  

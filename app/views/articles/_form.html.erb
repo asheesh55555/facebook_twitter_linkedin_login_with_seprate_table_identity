@@ -1,47 +1,68 @@
 
+    <div class="container">
+      <div class="container bgbox2">
+        <div class="col-md-9 ">
+          <p>COLAB</p>
+        </div>
+        <div class="col-md-3">
+          <a href=""><img src="/images/message.png" class="img" alt="Cinque Terre" ></a>
+          <a href=""><img src="/images/well.png" class="img" alt="Cinque Terre" ></a>
+          <a href=""><img src="/images/profile.png" class="img" alt="Cinque Terre" ></a> 
+        </div>
+      </div>
+    </div>
+    <br/>
+    <div class="container">
+      <div class="col-md-4">
+        <a href=""><img src="/images/Generic-profile-image.png" class="img-circle" alt="Cinque Terre" ></a>
+      </div>
+      <div class="col-md-8">
+        <div class="well well-sm  ">
+
+
+              <%= form_with(model: article, local: true) do |form| %>
+                 
+                <div class="emoji-picker-container">
+                  <%= form.label :title %>
+                  <%= form.text_field :title,class: "img-responsive posi" ,width: "1000" ,alt: "Cinque Terre", data: { emojiable: true } %>
+                </div><br>
+                  <%= form.label :Tag %><br>
+              <select multiple class="js-example-basic-multiple"   name="vvv[]"
+                style="width: 11.75em;">
+                              <% @users.each do |user| %>
+                        <option value= "<%=user.id%>"><%=user.name%></option>
+                              <% end %>
+
+                        </select>
+                
+                  
+               
+                  <%= form.label :img_upload %>
+                  <%= form.file_field :img,  src: "/images/attch.png" , class: "img-responsive posi1" ,alt: "Cinque Terre" %>
+            
+                
+          <a href=""><img src="/images/attch.png" class="img-responsive posi1" alt="Cinque Terre" ></a>
+                 
+          
+            
 
 
 
 
-
-
-<%= form_with(model: article, local: true) do |form| %>
-    
-
-
-
-  
-  <div class="emoji-picker-container">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: 'form-control', data: { emojiable: true } %>
-  </div>
-
+        
+        </div>
+        <br/>
+        <div class="btn-group">
+         
+           <%= form.submit "Post Article" ,style: "padding:5px 60px;" ,class: "btn  " %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+    <hr/>
    
 
-  <select multiple class="js-example-basic-multiple"   name="vvv[]"
-  style="width: 11.75em;">
-                <% @users.each do |user| %>
-                 
- 
-          <option value= "<%=user.id%>"><%=user.name%></option>
-                <% end %>
 
-          </select>
-  
-
-
-
-           <%= form.label :Tag %>
-
-           
- <div class="field">
-    <%= form.label :img_upload %>
-    <%= form.file_field :img %>
-    </div>
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
 
  
   
@@ -67,3 +88,10 @@ $(".js-example-basic-multiple").select2({
     ...
   <option value="WY">Wyoming</option>
 </select> -->
+
+
+
+
+
+
+
