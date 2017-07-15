@@ -1,9 +1,82 @@
 
 
 <h1>Your profile</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Profile first login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body style="padding-top:50px;">
+    <div class="container">
+      <center>
+        <a href=""><img src="/images/Generic-profile-image.png" class="img-circle" alt="Cinque Terre" ></a>
+      </center>
+    </div>
+    <div class="continer my-continer padd2">
+      <p >About</p>
+      <div class="well well-sm  "><%=current_user.about%></div>
+      <div class="btn-group">
+        <p>Intrest</p>
+        <button style="padding:50px 60px;margin-left:30px;" type="button" class="btn">Design</button>
+        <button style="padding:50px 60px;margin-left:30px;" type="button" class="btn">Art</button>
+        <button style="padding:50px 60px;margin-left:30px;" type="button" class="btn">Graphics</button>
+        <button style="padding:50px 60px;margin-left:30px;" type="button" class="btn">Music</button>
+        <button style="padding:50px 60px;margin-left:30px;" type="button" class="btn">Drama</button>
+      </div>
+      <br/><br/><br/>
+      <div class="container">
+        <div class="col-md-10">
+          <center><button style="padding:5px 60px;" type="button" class="btn">Next</button></center>
+        </div>
+        <div class="col-md-2">
+          <p class="alinright"> <a href="">Skip This</a></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
 
 
-<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <p>
   <strong>Name:</strong>
   <%= @user.name %>
 </p>
@@ -57,3 +130,4 @@
     
  <%= link_to "Followers", {controller: "follows", action: "follower"} %>
       </h1>
+ -->

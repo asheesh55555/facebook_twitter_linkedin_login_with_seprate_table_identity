@@ -6,7 +6,7 @@
     <div class="container">
       <% @articles.each do |article| %>
       <div class="col-md-12">
-        <a href=""><img src="images/Generic-profile-image.png" class="img" alt="Cinque Terre" width="60" hight="60"></a><a href="">User Name</a>
+        <a href=""><img src="images/Generic-profile-image.png" class="img" alt="Cinque Terre" width="60" hight="60"></a><%=article.user.name%>
         <br/>
         <div class="well well-sm "><%= article.title %></div>
            <div class="well well-sm  ">
@@ -158,6 +158,7 @@
 <script>
 
 function endorses_click(argument) {
+  alert("hello")
    $(".endorse_form_"+ argument).toggle();
 }
 
