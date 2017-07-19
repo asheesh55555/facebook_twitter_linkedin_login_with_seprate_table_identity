@@ -26,8 +26,12 @@
     <br/>
     <div class="container">
       <div class="col-md-4">
-        <a href=""><img src="/images/Generic-profile-image.png" class="img-circle" alt="Cinque Terre" ></a>
+       
+
+         <%=image_tag current_user.img, class: "img-circle" , alt: "Cinque Terre" ,size: 10*10%>
+           <div ><%=current_user.name%></div>
       </div>
+
       <div class="col-md-8">
         <div class="well well-sm  ">
 
@@ -51,6 +55,7 @@
                
                   <%= form.label :img_upload %>
                   <%= form.file_field :img,  src: "/images/attch.png" , class: "img-responsive posi1" ,alt: "Cinque Terre" %>
+
             
                 
           <a href=""><img src="/images/attch.png" class="img-responsive posi1" alt="Cinque Terre" ></a>

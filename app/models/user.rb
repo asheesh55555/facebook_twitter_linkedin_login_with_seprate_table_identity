@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+   mount_uploader :img, AbcUploader
     has_many :taggings
     has_many :articles, through: :taggings
 has_many :articles

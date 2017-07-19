@@ -6,7 +6,16 @@
     <div class="container">
       <% @articles.each do |article| %>
       <div class="col-md-12">
-        <a href=""><img src="images/Generic-profile-image.png" class="img" alt="Cinque Terre" width="60" hight="60"></a><%=article.user.name%>
+         <%= image_tag article.img ,size: 10*6  %>
+          
+
+
+
+
+
+
+
+        <%=article.user.name%>
         <br/>
         <div class="well well-sm "><%= article.title %></div>
            <div class="well well-sm  ">

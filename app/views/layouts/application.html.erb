@@ -18,7 +18,7 @@
   </li>
        <% unless params[:controller] == "users" && params[:action] == "show" %>
 
-  <%= link_to "profile", {:controller => "users", :action => "show", :id => current_user.id }%>
+  <%#= link_to "profile", {:controller => "users", :action => "show", :id => current_user.id }%>
   <%end%>
 <% else %>
   <li>
@@ -27,6 +27,7 @@
 <% end %>
     <div class="container">
     <%#= link_to('profile', user_profile_path, method: :get) %> 
+    <%= link_to "profile", user_profile_path(id: current_user.id) %>
     
       <%= yield %>
     </div>
