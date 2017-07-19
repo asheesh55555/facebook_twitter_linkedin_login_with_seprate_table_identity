@@ -1,0 +1,15 @@
+
+
+
+<% @likenotifications.each do |notf| %>
+<%@user=User.where(id: notf.actor_id).first%>
+<%@title=Article.where(id: notf.article_id).first.title%>
+<%if @user != current_user%>
+
+  <p>
+ 
+    <%= "#{@user.name} liked your atricle #{@title} #{notf.id}" %>
+  </p>
+ <% end %>
+ 
+<% end %>

@@ -24,12 +24,12 @@
             <%#else%>
             <%#= link_to "Like #{@likes}", like_article_path(article), method: :put %>
 
-         <td><%= link_to  like_article_path(article), method: :put ,data: { :remote=> true }  do %>
+         <td><%= link_to  like_article_path(article), method: :put,  :remote=> true   do %>
           <span class="article-up-<%=article.id%>" style='width: 50px' >
              Like<%= article.get_upvotes.size %><% end %></td>
           </span>
        
-          <td><%= link_to  dislike_article_path(article), method: :put ,data: { :remote=> true }  do %>
+          <td><%= link_to  dislike_article_path(article), method: :put, :remote=> true   do %>
           <span class="article-down-<%=article.id%>" style='width: 50px'>
            Dislike<%= article.get_downvotes.size %><% end %></td>
           </span>
@@ -148,6 +148,18 @@
                   <% end %>
                 </div>
 
+
+
+           <h2>Users Tagged</h2>
+                <% article.taggings.each do |tagging| %> 
+                  <p>
+                  
+                    <%= User.find(tagging.user_id).name %>
+                  </p>
+                 
+                 
+                <% end %>
+
       </div>
       <% end %>
       <div>
@@ -158,7 +170,7 @@
 <script>
 
 function endorses_click(argument) {
-  alert("hello")
+
    $(".endorse_form_"+ argument).toggle();
 }
 

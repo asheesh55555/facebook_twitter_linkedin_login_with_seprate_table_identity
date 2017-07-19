@@ -41,10 +41,11 @@ Tagging.create(:user_id => params[:userID ],article_id: params[:articleID ])
 
   # GET /articles/new
   def new
-  @articles = Article.all
+   # byebug
+  @articles = Article.all.order(created_at:  :desc)
  session[:conversations] ||= []
  
-    @users = User.all.where.not(id: current_user)
+    @users = User.all
     
     @conversations = Conversation.includes(:recipient, :messages)
                                  .find(session[:conversations])
@@ -64,6 +65,7 @@ Tagging.create(:user_id => params[:userID ],article_id: params[:articleID ])
     @article.user_id=current_user.id
     
 
+  
     respond_to do |format|
       if @article.save
        # byebug
@@ -119,6 +121,7 @@ Tagging.create(:user_id => params[:userID ],article_id: params[:articleID ])
     
       @article = Article.find(params[:id])
       @article.liked_by current_user
+      Notification.create(recipient_id: @article.user.id, actor_id: current_user.id, article_id: @article.id, notifiable_for: "like")
        respond_to do |format|
     format.js { render :file => 'articles/article.js.erb'}
      end
@@ -126,6 +129,9 @@ Tagging.create(:user_id => params[:userID ],article_id: params[:articleID ])
  def downvote
       @article = Article.find(params[:id])
       @article.downvote_from current_user
+
+
+      Notification.create(recipient_id: @article.user.id, actor_id: current_user.id, article_id: @article.id, notifiable_for: "dislike")
        respond_to do |format|
     format.js { render :file => 'articles/article.js.erb'}
      end

@@ -6,7 +6,7 @@ class EndorsesController < ApplicationController
     @endorse = @article.endorses.new(endorse_params)
     @endorse.user_id = current_user.id
     @endorse.save
-    redirect_to articles_path
+    redirect_to new_article_path
   end
  
   private

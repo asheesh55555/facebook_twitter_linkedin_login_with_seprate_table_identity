@@ -1,13 +1,58 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :finish_signup, :follow]
 
+
+def friend
+      if Friendship.where(sender: current_user.id,receiver: params[:id], accept: false).first.present?
+          flash[:notice] = "you have already sent the friend  request to this user"
+
+      elsif Friendship.where(sender: current_user.id,receiver: params[:id], accept: true).first.present?
+       
+            flash[:notice] = "You are already friend of this user"  
+        else
+            Friendship.create(sender: current_user.id,receiver: params[:id], accept: false )
+            flash[:notice] = "freind request sent"  
+        end
   
+   redirect_to user_profile_path(id: current_user.id)
+end
+
+def accept_friend
+  @abc=Friendship.where(receiver: params[:re] ,sender: params[:se]).first
+  @abc.update(accept: true)
+      flash[:notice] = "Now you are friend with #{User.where(id: params[:se]).first.name}"
+    redirect_to user_profile_path(id: current_user.id)
+end
+def delete_friend
+  @abc=Friendship.where(receiver: params[:re] ,sender: params[:se]).first
+  @abc.destroy
+   flash[:notice] = "request deleted"
+  redirect_to user_profile_path(id: current_user.id)
+end
+  def notification
+
+   @likenotifications= Notification.where(recipient_id: current_user.id,notifiable_for: "like")
+    @dislikenotifications= Notification.where(recipient_id: current_user.id,notifiable_for: "dislike")
+    
+  end
 
   # GET /users/:id.:format
   def show
-    @followers=current_user.followers 
-    @users=User.all
-    # authorize! :read, @user
+   if Friendship.where(receiver: current_user.id).first.present?
+      @friend_request=Friendship.where(receiver: current_user.id)
+    end 
+
+     @users = User.all.where.not(id: current_user)
+    
+      
+
+    if Friendship.where(receiver: current_user.id).first.present? || Friendship.where(sender: current_user.id).first.present?
+
+      @friends = Friendship.where(receiver: current_user.id)
+    
+       @friends1 = Friendship.where(sender: current_user.id)
+    end
+
   end
   def follow
   
@@ -66,6 +111,7 @@ class UsersController < ApplicationController
   
   private
     def set_user
+       
       @user = User.find(params[:id])
     end
 

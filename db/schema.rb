@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170714142119) do
+ActiveRecord::Schema.define(version: 20170718063730) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -49,6 +49,17 @@ ActiveRecord::Schema.define(version: 20170714142119) do
     t.index ["following_id"], name: "index_follows_on_following_id"
   end
 
+  create_table "friendships", force: :cascade do |t|
+    t.integer "sender"
+    t.integer "receiver"
+    t.boolean "accept"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["receiver"], name: "index_friendships_on_receiver"
+    t.index ["sender", "receiver"], name: "index_friendships_on_sender_and_receiver", unique: true
+    t.index ["sender"], name: "index_friendships_on_sender"
+  end
+
   create_table "identities", force: :cascade do |t|
     t.integer "user_id"
     t.string "provider"
@@ -66,6 +77,15 @@ ActiveRecord::Schema.define(version: 20170714142119) do
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "actor_id"
+    t.integer "article_id"
+    t.string "notifiable_for"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "taggings", force: :cascade do |t|

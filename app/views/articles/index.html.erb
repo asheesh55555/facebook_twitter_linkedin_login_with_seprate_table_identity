@@ -1,4 +1,24 @@
 
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    background-image: url("/images/lamborgini.png");
+     background-repeat: no-repeat;
+    background-position: right top;
+    margin-right: 200px;
+    background-attachment: fixed;
+}
+ .abc{
+    color: green;
+}
+</style>
+</head>
+
+<body>
 <p id="notice"><%= notice %></p>
 <h1>Articles</h1>
 <!-- <table>
@@ -184,11 +204,12 @@
                     <strong>title:</strong>
                     <%= endorse.title %>
                   </p>
-                 
+                 <div class="abc">
                   <p>
                     <strong>body:</strong>
                     <%= endorse.body %>
                   </p>
+                  </div>
 
                   <p>
                     <strong>Endorsed by:</strong>
