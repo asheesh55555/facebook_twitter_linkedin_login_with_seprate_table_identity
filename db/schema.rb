@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170719113538) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -61,7 +64,7 @@ ActiveRecord::Schema.define(version: 20170719113538) do
   end
 
   create_table "identities", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "provider"
     t.string "uid"
     t.datetime "created_at", null: false
@@ -71,8 +74,8 @@ ActiveRecord::Schema.define(version: 20170719113538) do
 
   create_table "messages", force: :cascade do |t|
     t.text "body"
-    t.integer "user_id"
-    t.integer "conversation_id"
+    t.bigint "user_id"
+    t.bigint "conversation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
@@ -117,9 +120,9 @@ ActiveRecord::Schema.define(version: 20170719113538) do
 
   create_table "votes", force: :cascade do |t|
     t.string "votable_type"
-    t.integer "votable_id"
+    t.bigint "votable_id"
     t.string "voter_type"
-    t.integer "voter_id"
+    t.bigint "voter_id"
     t.boolean "vote_flag"
     t.string "vote_scope"
     t.integer "vote_weight"
@@ -131,4 +134,7 @@ ActiveRecord::Schema.define(version: 20170719113538) do
     t.index ["voter_type", "voter_id"], name: "index_votes_on_voter_type_and_voter_id"
   end
 
+  add_foreign_key "identities", "users"
+  add_foreign_key "messages", "conversations"
+  add_foreign_key "messages", "users"
 end

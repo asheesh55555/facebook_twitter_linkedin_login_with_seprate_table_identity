@@ -118,22 +118,24 @@ Tagging.create(:user_id => params[:userID ],article_id: params[:articleID ])
 
 
     def upvote
-    
+             @articles =    Article.all
       @article = Article.find(params[:id])
       @article.liked_by current_user
       Notification.create(recipient_id: @article.user.id, actor_id: current_user.id, article_id: @article.id, notifiable_for: "like")
        respond_to do |format|
-    format.js { render :file => 'articles/article.js.erb'}
+    format.js {} #render :file => 'articles/article.js.erb'}
      end
   end
  def downvote
+               @articles =    Article.all
+
       @article = Article.find(params[:id])
       @article.downvote_from current_user
 
 
       Notification.create(recipient_id: @article.user.id, actor_id: current_user.id, article_id: @article.id, notifiable_for: "dislike")
        respond_to do |format|
-    format.js { render :file => 'articles/article.js.erb'}
+    format.js {                } #render :file => 'articles/article.js.erb'}
      end
   end
 

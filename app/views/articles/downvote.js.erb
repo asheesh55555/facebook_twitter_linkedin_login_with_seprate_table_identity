@@ -1,0 +1,24 @@
+//alert("hello0000000000000111111");
+//debugger
+alert("hiiiiiiiiiiii");
+ $("#hello<%=@article.id%>").html('<a data-remote="true" class="btn btn-primary" href="/article/<%=@article.id%>/like"  >Like <%=@article.get_upvotes.size%></a>');
+$("#hi<%=@article.id%>").html('<a class="btn btn-primary" href="/article/<%=@article.id%>/dislike">Dislike <%=@article.get_downvotes.size%></a>');
+//var b = a.split(' ');
+//b[1]
+//var cc=parseInt(b[1]);
+//debugger
+// if(cc == <%#=@article.get_upvotes.size%>){
+// 	//alert("hiiiii")
+// 	var d = $("#hi").text();
+// var e = d.split(' ');
+// //debugger
+// var e=parseInt(e[1]);
+// $("#hi").text("dislike" + e+1)	
+// }
+
+
+//$("#hello").text()
+
+//all commented code are working
+$("<%=j render(:partial => 'articles/index', :object => @articles) %>")
+

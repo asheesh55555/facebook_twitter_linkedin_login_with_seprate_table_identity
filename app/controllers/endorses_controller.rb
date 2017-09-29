@@ -6,7 +6,15 @@ class EndorsesController < ApplicationController
     @endorse = @article.endorses.new(endorse_params)
     @endorse.user_id = current_user.id
     @endorse.save
-    redirect_to new_article_path
+    @articles = Article.all
+    # redirect_to new_article_path
+
+    # respond_to do |format|
+    
+    #     format.html { redirect_to new_article_path, notice: 'Article was successfully updated.' }
+    #     format.js { }
+      
+    # end
   end
  
   private

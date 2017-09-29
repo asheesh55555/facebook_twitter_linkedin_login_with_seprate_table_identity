@@ -19,8 +19,8 @@ root to: "home#index"
 
 resources :article do
   member do
-    put "like", to: "articles#upvote"
-    put "dislike", to: "articles#downvote"
+    get "like", to: "articles#upvote"
+    get "dislike", to: "articles#downvote"
   end
 end
 

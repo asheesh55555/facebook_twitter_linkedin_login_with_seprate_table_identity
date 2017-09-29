@@ -1,0 +1,8 @@
+
+$("#abc-<%= @article.id%>").append("<p><strong>body1:<%=params[:endorse][:body]%></strong></p>")
+$("<%=j render(:partial => 'articles/index', :object => @articles) %>")
+$("#asheesh1-<%=@article.id%>").val('')
+<%#byebug%>
+//$('#asheesh1-<%=@article.id%>').val();
+//$("<%=j render(:partial => 'articles/index', :object => @endorse) %>").appendTo($("#asheesh2-<%=@endorse.id%>"));
+

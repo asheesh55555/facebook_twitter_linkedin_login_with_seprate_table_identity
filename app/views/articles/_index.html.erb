@@ -32,16 +32,24 @@
             <%#= link_to "Dislike #{@dislikes}", dislike_article_path(article), method: :put %>
             <%#else%>
             <%#= link_to "Like #{@likes}", like_article_path(article), method: :put %>
+            <table><tr>
+            <td>
+              <div id = "hello<%=article.id%>">
+         <%= link_to "Like #{article.get_upvotes.size}" , like_article_path(article) ,  :remote=> true, class: "btn btn-primary"     %>
+         </div>
+         </td>
 
-         <td><%= link_to  like_article_path(article), method: :put,  :remote=> true   do %>
-          <span class="article-up-<%=article.id%>" style='width: 50px' >
-             Like<%= article.get_upvotes.size %><% end %></td>
+          <!-- <span class="article-up-<%=article.id%>" style='width: 50px' >
+             Like<%#= article.get_upvotes.size %><%# end %></td>
           </span>
-       
-          <td><%= link_to  dislike_article_path(article), method: :put, :remote=> true   do %>
-          <span class="article-down-<%=article.id%>" style='width: 50px'>
-           Dislike<%= article.get_downvotes.size %><% end %></td>
-          </span>
+        -->
+        <td>
+        <div id = "hi<%=article.id%>">
+          <%= link_to "Dislike #{article.get_downvotes.size}" , dislike_article_path(article), :remote=> true ,class: "btn btn-primary"   %>
+          </div>
+          </td>
+          </tr>
+          </table>
     
             <%# end %>
           <%#byebug%>
@@ -70,37 +78,6 @@
 
 
 
-<div class="chat_form_<%=article.id %>" style='display: none;'>
-    
-<div class="row">
-  <div class="col-md-9">
-    <ul id="conversations-list">
-      <% @conversations.each do |conversation| %>
-        <%= render 'conversations/conversation', conversation: conversation, user: current_user %>
-      <% end %>
-    </ul>
-  </div>
-
-  <div class="col-md-3">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">User list</h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-          <% @users.each do |user| %>
-         <li><%= link_to user.email, conversations_path(user_id: user), remote: true, method: :post %></li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-     </div>
-
-
-
-
 
 
 
@@ -122,34 +99,30 @@
 
 
 
-
+ 
            <h2>endorses</h2>
+           <div id = "abc-<%= article.id%>">
                 <% article.endorses.each do |endorse| %> 
-                  <p>
-                    <strong>title:</strong>
-                    <%= endorse.title %>
-                  </p>
-                 
+                  
+                
                   <p>
                     <strong>body:</strong>
                     <%= endorse.body %>
                   </p>
 
-                  <p>
-                    <strong>Endorsed by:</strong>
-                    <%= endorse.user.email %>
-                  </p>
+                 
                 <% end %>
-                 <div class="endorse_form_<%=article.id %>" style='display: none;'>
+                </div>
+                 <div id="endorse_form_<%=article.id %>" style='display: none;'>
                   <h2>Add a endorse:</h2>
-                  <%= form_for([article, article.endorses.build]) do |f| %>
-                    <p>
-                      <%= f.label :title %><br>
-                      <%= f.text_field :title %>
-                    </p>
+                  <%= form_for([article, article.endorses.build], remote: true) do |f| %>
+                    <!-- <p>
+                      <%#= f.label :title %><br>
+                      <%#= f.text_field :title %>
+                    </p> -->
                     <p>
                       <%= f.label :body %><br>
-                      <%= f.text_area :body %>
+                      <%= f.text_area :body , id: "asheesh1-#{article.id}"%>
                     </p>
                     <p>
                       <%= f.submit %>
@@ -180,7 +153,7 @@
 
 function endorses_click(argument) {
 
-   $(".endorse_form_"+ argument).toggle();
+   $("#endorse_form_"+ argument).toggle();
 }
 
 </script>
