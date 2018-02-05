@@ -19,6 +19,7 @@
 
 
 //= require jquery
+//= require ahoy
 //= require jquery_ujs
 //= require rails_emoji_picker
 //= require rails-ujs

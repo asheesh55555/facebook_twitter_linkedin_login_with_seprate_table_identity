@@ -15,7 +15,7 @@
 
 
 
-        <%=article.user.name%>
+        <%#=article.user.name%>
         <br/>
         <div class="well well-sm "><%= article.title %></div>
            <div class="well well-sm  ">
@@ -32,25 +32,25 @@
             <%#= link_to "Dislike #{@dislikes}", dislike_article_path(article), method: :put %>
             <%#else%>
             <%#= link_to "Like #{@likes}", like_article_path(article), method: :put %>
-            <table><tr>
-            <td>
-              <div id = "hello<%=article.id%>">
-         <%= link_to "Like #{article.get_upvotes.size}" , like_article_path(article) ,  :remote=> true, class: "btn btn-primary"     %>
-         </div>
-         </td>
+        
+             <a id="asheesh<%=article.id%>" href="#">
+               
+             </a>
+         <%= link_to "Like #{article.get_upvotes.size}" , like_article_path(article) ,  :remote=> true, class: "btn btn-primary", id: "xxxx#{article.id}"     %>
+      
+     
 
           <!-- <span class="article-up-<%=article.id%>" style='width: 50px' >
              Like<%#= article.get_upvotes.size %><%# end %></td>
           </span>
         -->
-        <td>
-        <div id = "hi<%=article.id%>">
-          <%= link_to "Dislike #{article.get_downvotes.size}" , dislike_article_path(article), :remote=> true ,class: "btn btn-primary"   %>
-          </div>
-          </td>
-          </tr>
-          </table>
-    
+       
+          <a id="asheesh_mourya<%=article.id%>" href="#">
+               
+             </a>
+          <%= link_to "Dislike #{article.get_downvotes.size}" , dislike_article_path(article), :remote=> true ,class: "btn btn-primary", id: "yyyy#{article.id}" %>
+        
+          
             <%# end %>
           <%#byebug%>
           <%#= link_to "Like", like_article_path(article), method: :put %> 

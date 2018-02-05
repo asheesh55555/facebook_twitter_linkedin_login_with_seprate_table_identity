@@ -74,3 +74,4 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem "select2-rails"
 gem 'carrierwave', '~> 1.0'
 #gem "mini_magick"
+gem 'ahoy_matey'

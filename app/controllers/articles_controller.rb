@@ -68,7 +68,7 @@ Tagging.create(:user_id => params[:userID ],article_id: params[:articleID ])
   
     respond_to do |format|
       if @article.save
-       # byebug
+        byebug
         @art_id= @article.id
        @user_idss = params[:vvv ]
        if @user_idss != nil
