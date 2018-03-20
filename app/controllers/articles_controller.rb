@@ -57,6 +57,13 @@ Tagging.create(:user_id => params[:userID ],article_id: params[:articleID ])
   def edit
   end
 
+  def dummy_def
+    format.html { redirect_to new_article_path, notice: 'Article was successfully created.' }
+    format.json { render :show, status: :created, location: @article }
+    format.html { render :new }
+    format.json { render json: @article.errors, status: :unprocessable_entity }
+  end
+
   # POST /articles
   # POST /articles.json
   def create
