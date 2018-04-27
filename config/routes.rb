@@ -30,6 +30,32 @@ end
 
 
 
+
+
+
+
+namespace :api do
+
+resources :oauth_callbacks, only: [] do 
+      collection do 
+        post '/facebook', to:  'oauth_callbacks#facebook'
+        post '/google',   to:  'oauth_callbacks#google'
+      end
+    end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
 get "/tagging" => "articles#tag"
 get "/user/profile" => "users#show"
 get "/user/follow1111" => "users#follow"
