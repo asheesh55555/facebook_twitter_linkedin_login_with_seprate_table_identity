@@ -25,15 +25,12 @@ class Identity < ApplicationRecord
   def self.find_and_init_for(auth)
     auth_provider = self.find_or_initialize_by(uid: auth.uid, provider: auth.provider)
 
-    auth_provider.user = User.find_or_initialize_by(email: auth.info.email) do |user|
+    user = User.find_or_initialize_by(email: auth.info.email) do |user|
       user.password = Devise.friendly_token[0,20]
       user.password_sent = true
       user.confirmed_at = Time.now
       user.skip_confirmation!
       user.save!
-      auth_provider.user_id = user.id
-      auth_provider.save!
-
       # if auth.info.first_name.nil?
       #   user.first_name = auth.info.name
       # else
@@ -41,6 +38,8 @@ class Identity < ApplicationRecord
       #   user.last_name = auth.info.last_name
       # end
     end
+     auth_provider.user_id = user.id
+     auth_provider.save!
     return auth_provider
   end
 
